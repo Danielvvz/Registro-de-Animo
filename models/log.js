@@ -2,14 +2,18 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const logSchema = new Schema({
+  user_id: {
+    type: String,
+    required: true
+  },
   level: {
     type: Number,
     required: true
   },
-  title: {
-    type: String,
+  timestamp: {
+    type: Date,
     required: true
   },
-}, { timestamps: true });
+}, { timestamps: false });
 
 module.exports = mongoose.model('Log', logSchema);

@@ -19,33 +19,14 @@
   <body>
     <%- include('partials/menu'); %>
     <div class="container">
-      <%- include('partials/log_add'); %>
-      <%- include('partials/chart_daily'); %>
+      <%- include('partials/login_form'); %>
     </div>
 
     <script>
       // Init Materialize
       (function() {
         $(function() {
-          var logs = <%- JSON.stringify(logs) %>;
-          const $canvas = $('#myChart');
-          global.fillCanvas($canvas, logs);
-          // Events
-          $('#enviar').on('click', function (e) {
-            const nivel = parseInt($('#nivel').val());
-            $.ajax({
-              url: '/log/add',
-              type: 'POST',
-              data: {
-                level: nivel,
-                time: moment().toJSON()
-              }
-            });
-          });
-
-          $('#nivel').on('change', function (e) {
-            $('.nivel').text($(e.currentTarget).val());
-          });
+          
         });
       })();
     </script>

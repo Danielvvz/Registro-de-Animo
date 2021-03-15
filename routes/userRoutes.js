@@ -1,0 +1,42 @@
+const express = require('express');
+const User = require('../helpers/user');
+const router = express.Router();
+router.use(require('cookie-parser')());
+const jwt = require('jsonwebtoken');
+
+// Routes
+router.get('/login', async (req, res) => {
+  res.render('login');
+});
+
+router.post('/login', async (req, res) => {
+  var userName = req.body.user_name;
+  var password = req.body.password;
+  var user = await User.getUser({
+    user_name: userName
+  });
+  // Validate password
+  var valid = await User.validatePassword(userName, password);
+  if (valid) {
+    const token = jwt.sign({
+      user: user._id
+    }, '15102s'); // use an encryption file later
+    res.cookie('session-token', token, {
+      httpOnly: true
+    });
+    res.redirect('/log');
+  } else {
+    res.status(401).end();
+  }
+});
+
+router.use('/logout', async (req, res) => {
+  res.clearCookie('session-token');
+  res.redirect('/');
+});
+
+router.post('/signup', (req, res) => {
+  
+});
+
+module.exports = router;
