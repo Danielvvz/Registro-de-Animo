@@ -22,10 +22,10 @@ _This instructions will let you know how to run this project on your local machi
 To run this project on your local environment you first have to clone this git, and run it with npm
 
 ```
-git clone https://github.com/daniel-vz7/Registro-de-Animo.git
-cd /Registro-de-Animo
-npm install
-npm run dev
+$ git clone https://github.com/daniel-vz7/Registro-de-Animo.git
+$ cd /Registro-de-Animo
+$ npm install
+$ npm run dev
 ```
 
 Note: This will run it on a dev environment with nodemon, I'll update the instructions for a production environment once I set them
